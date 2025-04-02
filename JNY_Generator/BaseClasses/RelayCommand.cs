@@ -1,4 +1,3 @@
-using System;
 using System.Windows.Input;
 
 namespace JNY_Generator.BaseClasses
@@ -8,15 +7,15 @@ namespace JNY_Generator.BaseClasses
     /// </summary>
     public class RelayCommand : ICommand
     {
-        private readonly Action<object> _execute;
-        private readonly Predicate<object> _canExecute;
+        private readonly Action<object?> _execute;
+        private readonly Predicate<object?>? _canExecute;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayCommand"/> class that does not have a delegate to
         /// determine if it can execute.
         /// </summary>
         /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action<object> execute) : this(execute, null)
+        public RelayCommand(Action<object?> execute) : this(execute, null)
         {
         }
 
@@ -26,7 +25,7 @@ namespace JNY_Generator.BaseClasses
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
@@ -38,7 +37,7 @@ namespace JNY_Generator.BaseClasses
         /// <param name="parameter">Data used by the command. If the command does not require data to be passed,
         /// this object can be set to null.</param>
         /// <returns>true if this command can be executed; otherwise, false.</returns>
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }
@@ -48,7 +47,7 @@ namespace JNY_Generator.BaseClasses
         /// </summary>
         /// <param name="parameter">Data used by the command. If the command does not require data to be passed,
         /// this object can be set to null.</param>
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             _execute(parameter);
         }
@@ -56,7 +55,7 @@ namespace JNY_Generator.BaseClasses
         /// <summary>
         /// Occurs when changes occur that affect whether or not the command should execute.
         /// </summary>
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
