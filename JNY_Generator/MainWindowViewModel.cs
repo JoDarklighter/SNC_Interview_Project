@@ -123,7 +123,7 @@ namespace JNY_Generator
             {
                 Filter = "JNY files (*.JNY)|*.JNY",
                 DefaultExt = ".JNY",
-                FileName = _vehicleViewModel.Identifier,
+                FileName = _vehicleViewModel.Descriptor,
             };
 
             if (saveFileDialog.ShowDialog() == true)

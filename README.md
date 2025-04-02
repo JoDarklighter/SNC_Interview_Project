@@ -17,10 +17,9 @@ The SNC_Interview_Project is a WPF application developed using .NET 9. It allows
 - Windows operating system
 
 ### Installing the ClickOnce Application
-1. Navigate to the [GitHub Releases](https://github.com/JoDarklighter/SNC_Interview_Project/releases) page of this repository.
-2. Download the latest release of the ClickOnce installer (`SNC_Interview_Project.application`).
-3. Open the downloaded `.application` file. This will launch the ClickOnce installer.
-4. Follow the on-screen instructions to complete the installation.
+1. Download the latest release of the ClickOnce application at https://jodarklighter.github.io/SNC_Interview_Project/JNY_Generator.application.
+2. Open the downloaded `.application` file. This will launch the ClickOnce installer.
+3. Follow the on-screen instructions to complete the installation.
 
 ### Running the Application
 Once the installation is complete, you can run the application from the Start Menu or the desktop shortcut created during the installation process.
