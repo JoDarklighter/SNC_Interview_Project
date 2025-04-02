@@ -5,10 +5,16 @@ namespace JNY_Generator.Vehicles
 {
     public class CarViewModel : VehicleViewModel
     {
+        private static readonly string _identifier = "CAR";
         private string _manufacturer = "";
         private uint _modelYear;
         private BodyStyleEnum _bodyStyle;
         private FuelEnum _fuel;
+
+        /// <summary>
+        /// Unique identifier for the type of vehicle.
+        /// </summary>
+        public override string Identifier => _identifier;
 
         /// <summary>
         /// The manufacturer name of the car.
