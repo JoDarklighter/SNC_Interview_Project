@@ -1,7 +1,7 @@
-# SNC_Interview_Project
+# Travel Log Generator
 
 ## Overview
-The SNC_Interview_Project is a WPF application developed using .NET 9. It allows users to generate random car and boat travel logs with various properties and save them to a `.JNY` file. The application also provides a preview of the generated vehicle data.
+Travel Log Generator (TLG) is a WPF application developed using .NET 9. It allows users to generate random car and boat travel logs with various properties and save them to a `.JNY` file. The application also provides a preview of the generated vehicle data.
 
 ## Features
 - Generate random car view models with different makes, models, body styles, and fuel types.
