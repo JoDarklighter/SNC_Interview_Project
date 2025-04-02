@@ -10,25 +10,25 @@ namespace JNY_Generator.Factories
 
         private const double SecondsPerHour = 3600.0;
         private const double FeetPerMile = 5280.0;
-        private const double CarMinSpeedMph = 25.0;
-        private const double CarMaxSpeedMph = 60.0;
+        private const double CarMinSpeedFps = 25.0 * FeetPerMile / SecondsPerHour;
+        private const double CarMaxSpeedFps = 60.0 * FeetPerMile / SecondsPerHour;
         private const double CarMaxTurnDegrees = 90.0;
         private const double BoatMaxTurnDegrees = 30.0;
 
-        private static readonly Dictionary<PowerEnum, (double MinSpeedMph, double MaxSpeedMph)> BoatSpeedRanges = new()
+        private static readonly Dictionary<PowerEnum, (double MinSpeedFps, double MaxSpeedFps)> BoatSpeedRanges = new()
         {
-            { PowerEnum.MOTOR, (25.0, 60.0) },
-            { PowerEnum.SAIL, (15.0, 30.0) },
-            { PowerEnum.UNPOWERED, (1.0, 10.0) }
+            { PowerEnum.MOTOR, (25.0 * FeetPerMile / SecondsPerHour, 60.0 * FeetPerMile / SecondsPerHour) },
+            { PowerEnum.SAIL, (15.0 * FeetPerMile / SecondsPerHour, 30.0 * FeetPerMile / SecondsPerHour) },
+            { PowerEnum.UNPOWERED, (1.0 * FeetPerMile / SecondsPerHour, 10.0 * FeetPerMile / SecondsPerHour) }
         };
 
-        private static readonly (double MinLat, double MaxLat, double MinLon, double MaxLon)[] Zones = new[]
-        {
+        private static readonly (double MinLat, double MaxLat, double MinLon, double MaxLon)[] Zones =
+        [
             (15.6, 56.2, -49.8, -23.1),
             (-48.8, -6.9, -28.6, 8.2),
             (-43.4, 8.1, -161.4, -98.4),
             (-41.1, -1.4, 62.2, 94.5)
-        };
+        ];
 
         /// <summary>
         /// Generates a random set of waypoints for a car.
@@ -57,7 +57,7 @@ namespace JNY_Generator.Factories
 
             for (int i = 0; i < waypointCount; i++)
             {
-                double speed = (_random.NextDouble() * (CarMaxSpeedMph - CarMinSpeedMph) + CarMinSpeedMph) * FeetPerMile / SecondsPerHour; // Speed in feet per second
+                double speed = (_random.NextDouble() * (CarMaxSpeedFps - CarMinSpeedFps) + CarMinSpeedFps); // Speed in feet per second
                 double deltaTime = Math.Round(_random.NextDouble() * 60, 2); // random time between 0 and 60 seconds, limited to 2 decimal places
                 double distance = speed * deltaTime; // Distance in feet
 
@@ -104,12 +104,12 @@ namespace JNY_Generator.Factories
 
             double currentBearing = _random.NextDouble() * 360; // Random starting bearing between 0 and 360 degrees
 
-            int waypointCount = _random.Next(minWaypoints, maxWaypoints + 1) - 1; //
-            var (minSpeedMph, maxSpeedMph) = BoatSpeedRanges[powerSource];
+            int waypointCount = _random.Next(minWaypoints, maxWaypoints + 1) - 1;
+            var (minSpeedFps, maxSpeedFps) = BoatSpeedRanges[powerSource];
 
             for (int i = 0; i < waypointCount; i++)
             {
-                double speed = (_random.NextDouble() * (maxSpeedMph - minSpeedMph) + minSpeedMph) * FeetPerMile / SecondsPerHour; // Speed in feet per second
+                double speed = (_random.NextDouble() * (maxSpeedFps - minSpeedFps) + minSpeedFps); // Speed in feet per second
                 double deltaTime = Math.Round(_random.NextDouble() * 60, 2); // random time between 0 and 60 seconds, limited to 2 decimal places
                 double distance = speed * deltaTime; // Distance in feet
 
