@@ -6,7 +6,6 @@ namespace JNY_Generator.Vehicles
 {
     public abstract class VehicleViewModel : ViewModelBase
     {
-        private string _identifier = "";
         private string _descriptor = "";
         private double _weight;
         private double _width;
@@ -17,11 +16,7 @@ namespace JNY_Generator.Vehicles
         /// Unique identifier for the type of vehicle.
         /// </summary>
         [FieldOrder(0)]
-        public string Identifier
-        {
-            get => _identifier;
-            set => SetProperty(ref _identifier, value);
-        }
+        public abstract string Identifier { get; }
 
         /// <summary>
         /// A human-readable description of the vehicle.

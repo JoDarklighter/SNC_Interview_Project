@@ -5,9 +5,15 @@ namespace JNY_Generator.Vehicles
 {
     public class BoatViewModel : VehicleViewModel
     {
+        private static readonly string _identifier = "BOAT";
         private PowerEnum _power;
         private double _draft;
         private string _manufacturer = "";
+
+        /// <summary>
+        /// Unique identifier for the type of vehicle.
+        /// </summary>
+        public override string Identifier => _identifier;
 
         /// <summary>
         /// The power source of the boat.
